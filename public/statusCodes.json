@@ -1,0 +1,138 @@
+[
+    {
+        "code": 100,
+        "reason": "Continue",
+        "description": "服务器已经接收到请求的初始部分，并且请求似乎有效，期望客户端继续发送请求的其余部分",
+        "geekDescription": "服务器说:\"别停,再来点!\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/100",
+        "image": "/images/100.png?height=200&width=200"
+    },
+    {
+        "code": 101,
+        "reason": "Switching Protocols",
+        "description": "服务器理解客户端的请求，并愿意切换到客户端请求的协议",
+        "geekDescription": "服务器说:\"让我们换个频道聊天吧!\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/101",
+        "image": "/images/101.png?height=200&width=200"
+    },
+    {
+        "code": 200,
+        "reason": "OK",
+        "description": "请求成功。一般用于GET与POST请求",
+        "geekDescription": "一切正常,世界和平!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200",
+        "image": "/images/200.png?height=200&width=200"
+    },
+    {
+        "code": 204,
+        "reason": "No Content",
+        "description": "服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档",
+        "geekDescription": "服务器说:\"我听到了,但我无话可说。\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/204",
+        "image": "/images/204.png?height=200&width=200"
+    },
+    {
+        "code": 206,
+        "reason": "Partial Content",
+        "description": "是对资源某一部分的请求。服务器成功处理了部分GET请求，响应报文中包含由Content-Range指定范围的实体内容",
+        "geekDescription": "这只是冰山一角,还有更多内容等着你!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206",
+        "image": "/images/206.png?height=200&width=200"
+    },
+    {
+        "code": 301,
+        "reason": "Moved Permanently",
+        "description": "请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替",
+        "geekDescription": "资源已永久移动,请更新您的链接!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/301",
+        "image": "/images/301.png?height=200&width=200"
+    },
+    {
+        "code": 302,
+        "reason": "Found",
+        "description": "与301类似。但资源只是临时被移动。客户端应继续使用原有URI",
+        "geekDescription": "资源暂时搬家了,跟我来!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/302",
+        "image": "/images/302.png?height=200&width=200"
+    },
+    {
+        "code": 304,
+        "reason": "Not Modified",
+        "description": "所请求的资源未修改。服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源",
+        "geekDescription": "别担心,一切如旧,没有变化!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304",
+        "image": "/images/304.png?height=200&width=200"
+    },
+    {
+        "code": 307,
+        "reason": "Temporary Redirect",
+        "description": "与302类似。使用GET请求重定向，会按照浏览器标准，不会从POST变成GET",
+        "geekDescription": "资源临时出差了,这是新地址!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/307",
+        "image": "/images/307.png?height=200&width=200"
+    },
+    {
+        "code": 400,
+        "reason": "Bad Request",
+        "description": "客户端请求报文中存在语法错误，服务器无法理解",
+        "geekDescription": "服务器说:\"你在说什么?我听不懂!\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/400",
+        "image": "/images/400.png?height=200&width=200"
+    },
+    {
+        "code": 401,
+        "reason": "Unauthorized",
+        "description": "请求要求用户的身份认证，通过HTTP认证（BASIC认证，DIGEST认证）的认证信息，若之前已进行过一次请求，则表示用户认证失败",
+        "geekDescription": "抱歉,这里是VIP专区,请出示您的通行证!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/401",
+        "image": "/images/401.png?height=200&width=200"
+    },
+    {
+        "code": 402,
+        "reason": "Payment Required",
+        "description": "直到客户端付费之后请求才会被处理",
+        "geekDescription": "想要继续?先付费吧!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/402",
+        "image": "/images/402.png?height=200&width=200"
+    },
+    {
+        "code": 403,
+        "reason": "Forbidden",
+        "description": "服务器理解请求客户端的请求，但是拒绝执行此请求",
+        "geekDescription": "禁止入内!这里是服务器的私人领地。",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/403",
+        "image": "/images/403.png?height=200&width=200"
+    },
+    {
+        "code": 404,
+        "reason": "Not Found",
+        "description": "服务器无法根据客户端的请求找到资源（网页）",
+        "geekDescription": "资源不存在,请检查您的链接!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/404",
+        "image": "/images/404.png?height=200&width=200"
+    },
+    {
+        "code": 500,
+        "reason": "Internal Server Error",
+        "description": "服务器内部错误，无法完成请求，也可能是web应用存在bug或某些临时故障",
+        "geekDescription": "服务器说:\"哎呀,出错了!\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/500",
+        "image": "/images/500.png?height=200&width=200"
+    },
+    {
+        "code": 501,
+        "reason": "Not Implemented",
+        "description": "服务器不支持请求的功能，无法完成请求",
+        "geekDescription": "服务器说:\"这个功能还在开发中,请稍后再试!\"",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/501",
+        "image": "/images/501.png?height=200&width=200"
+    },
+    {
+        "code": 503,
+        "reason": "Service Unavailable",
+        "description": "由于超载或系统维护，服务器暂时的无法处理客户端的请求",
+        "geekDescription": "服务器正在休假,请稍后再来!",
+        "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/503",
+        "image": "/images/503.png?height=200&width=200"
+    }
+]
