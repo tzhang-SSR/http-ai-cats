@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HTTP Status Code Gallery',
+  title: 'HTTP Status explained by Cats',
   description: 'A visual gallery of HTTP status codes',
 }
 

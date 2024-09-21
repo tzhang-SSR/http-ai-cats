@@ -75,7 +75,7 @@ export default function Component() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">HTTP Status Code Gallery</h1>
+      <h1 className="text-3xl font-bold mb-6">HTTP状态猫</h1>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div className="flex w-full gap-2">
           <Input
@@ -131,22 +131,22 @@ export default function Component() {
             <img src={selectedImage?.image} alt={`HTTP ${selectedImage?.code}`} className="w-full aspect-square object-cover rounded" />
             <button
               onClick={() => navigateModal(-1)}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
             <button
               onClick={() => navigateModal(1)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
               aria-label="Next image"
             >
               <ChevronRight className="h-6 w-6" />
             </button>
           </div>
           <div className="space-y-2">
-            <p><strong>描述:</strong> {selectedImage?.description}</p>
             <p><strong>极客解释:</strong> {selectedImage?.geekDescription}</p>
+            <p className='min-h-[80px]'><strong>描述:</strong> {selectedImage?.description}</p>
             <p><strong>来源:</strong> <a href={selectedImage?.source} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">MDN文档</a></p>
           </div>
           
