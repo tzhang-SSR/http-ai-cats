@@ -5,7 +5,9 @@
         "description": "服务器已经接收到请求的初始部分，并且请求似乎有效，期望客户端继续发送请求的其余部分",
         "geekDescription": "服务器说:\"别停,再来点!\"",
         "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/100",
-        "image": "/images/100.png?height=200&width=200"
+        "image": [
+            "/images/100.png?height=200&width=200"
+        ]
     },
     {
         "code": 101,
@@ -37,7 +39,12 @@
         "description": "是对资源某一部分的请求。服务器成功处理了部分GET请求，响应报文中包含由Content-Range指定范围的实体内容",
         "geekDescription": "这只是冰山一角,还有更多内容等着你!",
         "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206",
-        "image": "/images/206.png?height=200&width=200"
+        "image": [
+            "/images/206.png?height=200&width=200",
+            "/images/206-1.png?height=200&width=200",
+            "/images/206-2.png?height=200&width=200",
+            "/images/206-3.png?height=200&width=200"
+        ]
     },
     {
         "code": 301,
@@ -93,7 +100,10 @@
         "description": "直到客户端付费之后请求才会被处理",
         "geekDescription": "想要继续?先付费吧!",
         "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/402",
-        "image": "/images/402.png?height=200&width=200"
+        "image": [
+            "/images/402.png?height=200&width=200",
+            "/images/402-1.png?height=200&width=200"
+        ]
     },
     {
         "code": 403,
@@ -101,7 +111,10 @@
         "description": "服务器理解请求客户端的请求，但是拒绝执行此请求",
         "geekDescription": "禁止入内!这里是服务器的私人领地。",
         "source": "https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/403",
-        "image": "/images/403.png?height=200&width=200"
+        "image": [
+            "/images/403.png?height=200&width=200",
+            "/images/403-1.png?height=200&width=200"
+        ]
     },
     {
         "code": 404,

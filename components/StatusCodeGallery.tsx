@@ -14,14 +14,19 @@ type StatusCode = {
   description: string;
   geekDescription: string;
   source: string;
-  image: string;
+  image: string | string[];
 };
 
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState<string>('')
-  const [selectedImage, setSelectedImage] = useState<StatusCode | null>(null)
+  const [selectedImg, setSelectedImg] = useState<StatusCode | null>(null)
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [displayMode, setDisplayMode] = useState<string>('normal')
+  // const randomIndex = Math.floor(Math.random() * 5)
+
+  const getCodeImg = (code: StatusCode) => {
+    return Array.isArray(code.image) ? code.image[0] : code.image
+  }
 
   const filteredCodes = statusCodes.filter(code => 
     code.code.toString().includes(searchTerm) || 
@@ -44,13 +49,13 @@ export default function Component() {
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [modalOpen, selectedImage])
+  }, [modalOpen, selectedImg])
 
   const navigateModal = (direction: number) => {
-    if (!selectedImage) return
-    const currentIndex = statusCodes.findIndex(code => code.code === selectedImage.code)
+    if (!selectedImg) return
+    const currentIndex = statusCodes.findIndex(code => code.code === selectedImg.code)
     const newIndex = (currentIndex + direction + statusCodes.length) % statusCodes.length
-    setSelectedImage(statusCodes[newIndex])
+    setSelectedImg(statusCodes[newIndex])
   }
 
   const toggleDisplayMode = () => {
@@ -63,11 +68,11 @@ export default function Component() {
       key={code.code}
       className="border rounded-lg p-4 cursor-pointer hover:shadow-lg transition-shadow"
       onClick={() => {
-        setSelectedImage(code)
+        setSelectedImg(code)
         setModalOpen(true)
       }}
     >
-      <img src={code.image} alt={`HTTP ${code.code}`} className="w-full aspect-square object-cover mb-2 rounded" />
+      <img src={getCodeImg(code)} alt={`HTTP ${code.code}`} className="w-full aspect-square object-cover mb-2 rounded" />
       <p className="font-bold">{code.code}</p>
       <p className="text-sm">{code.reason}</p>
     </div>
@@ -76,6 +81,7 @@ export default function Component() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">HTTP状态猫</h1>
+      <h2 className="text-xl mb-4">让小猫们助你轻松掌握HTTP状态码!</h2>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div className="flex w-full gap-2">
           <Input
@@ -125,10 +131,10 @@ export default function Component() {
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
         <DialogContent className="sm:max-w-[425px] bg-white">
           <DialogHeader>
-            <DialogTitle>{selectedImage?.code} - {selectedImage?.reason}</DialogTitle>
+            <DialogTitle>{selectedImg?.code} - {selectedImg?.reason}</DialogTitle>
           </DialogHeader>
           <div className="relative mb-4">
-            <img src={selectedImage?.image} alt={`HTTP ${selectedImage?.code}`} className="w-full aspect-square object-cover rounded" />
+            <img src={selectedImg && getCodeImg(selectedImg)} alt={`HTTP ${selectedImg?.code}`} className="w-full aspect-square object-cover rounded" />
             <button
               onClick={() => navigateModal(-1)}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
@@ -145,9 +151,9 @@ export default function Component() {
             </button>
           </div>
           <div className="space-y-2">
-            <p><strong>极客解释:</strong> {selectedImage?.geekDescription}</p>
-            <p className='min-h-[80px]'><strong>描述:</strong> {selectedImage?.description}</p>
-            <p><strong>来源:</strong> <a href={selectedImage?.source} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">MDN文档</a></p>
+            <p><strong>极客解释:</strong> {selectedImg?.geekDescription}</p>
+            <p className='min-h-[80px]'><strong>描述:</strong> {selectedImg?.description}</p>
+            <p><strong>来源:</strong> <a href={selectedImg?.source} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">MDN文档</a></p>
           </div>
           
         </DialogContent>
