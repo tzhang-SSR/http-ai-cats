@@ -134,7 +134,7 @@ export default function Component() {
             <DialogTitle>{selectedImg?.code} - {selectedImg?.reason}</DialogTitle>
           </DialogHeader>
           <div className="relative mb-4">
-            <img src={selectedImg && getCodeImg(selectedImg)} alt={`HTTP ${selectedImg?.code}`} className="w-full aspect-square object-cover rounded" />
+            <img src={selectedImg ? getCodeImg(selectedImg) : ''} alt={`HTTP ${selectedImg?.code}`} className="w-full aspect-square object-cover rounded" />
             <button
               onClick={() => navigateModal(-1)}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
