@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 介绍
 
-## Getting Started
+HTTP状态猫是一个猫咪主题的HTTP状态码图解网站。通过可爱的猫咪形象来帮助用户理解和记忆HTTP状态码。
 
-First, run the development server:
+## 项目背景
+启发于[http.cat](https://http.cat)，原网站的功能同样是用现实场景中的猫咪图片来解析状态码的含义。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+本项目在原网站的基础上增加了几点优化：
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 图片种类：通过文生图模型生成猫咪图片，并将其与状态码进行关联
+- 交互优化：
+  - 将所有状态码**按含义分为五组**，方便用户按组查找
+  - 增加状态码搜索功能，用户可以通过顶部输入框快速查找对应状态码
+  - 修改卡片点击交互，点击后不再进入详情页，而是停留在当前页面，并展示对应状态码的解释弹窗
+  - 增加状态码的极客描述，方便用户快速理解状态码含义
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技术栈
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 网页设计: v0.dev
+- 文生图：MidJourney
+- 图片描述生成：Coze工作流
+- 编辑器: Cursor
+- 网页技术栈：Next.js, radix-UI，TailwindCSS
+- 部署平台：Vercel
 
-## Learn More
+## 开发进度
 
-To learn more about Next.js, take a look at the following resources:
+- [x] 完成网页基本页面布局和样式
+- [x] 完成17个主要状态码的图片描述和生成
+- [ ] 增加新的交互功能：页面刷新时随机展示一张不同的状态码图片
+- [ ] 补全剩余状态码的图片描述
+- [ ] 补全剩余状态码的图片生成
+- [ ] 实现公共API接口，方便用户快速查询状态码含义
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 贡献
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+目前欢迎以下形式的贡献：
+- **提交状态码的图片描述**
+  - 如果你觉得现有的图片描述不够有趣，或者有更好的描述方式，欢迎提交新的图片描述
+  - 请在**理解状态码含义**并保证描述与猫咪相关的基础上，尽可能发挥想象，提交更有趣的描述
+  - 提交的描述会经过审核，通过后会合并到主分支
+- 提交**新的状态码图片**
+  - 请尽可能使用AI模型生成，目前不接受现实场景的猫咪图片或者网络上的图片
+  - 请保证生成的图片的prompt是基于项目中现有的图片描述
+  - 提交的图片会经过审核，通过后会合并到主分支
+- 交互优化和性能优化
+  - 如果你有好的交互想法或者优化网站性能的想法，欢迎提交PR
 
-## Deploy on Vercel
+## 感谢以下所有贡献者
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 待补充
