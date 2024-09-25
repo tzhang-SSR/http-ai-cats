@@ -2,6 +2,11 @@
 
 HTTP状态猫是一个猫咪主题的HTTP状态码图解网站。通过可爱的猫咪形象来帮助用户理解和记忆HTTP状态码。
 
+### 访问地址
+
+1. [http-ai-cats.vercel.app](https://http-ai-cats.vercel.app)
+2. 国内访问：[http-ai-cats.cn](http://http-ai-cats.cn)
+
 ## 项目背景
 启发于[http.cat](https://http.cat)，原网站的功能同样是用猫咪图片来解析状态码的含义
 
