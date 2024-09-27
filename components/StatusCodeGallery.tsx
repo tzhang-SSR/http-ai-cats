@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef,useCallback } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -17,15 +17,28 @@ type StatusCode = {
   image: string | string[];
 };
 
+
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState<string>('')
   const [selectedImg, setSelectedImg] = useState<StatusCode | null>(null)
   const [modalOpen, setModalOpen] = useState<boolean>(false)
   const [displayMode, setDisplayMode] = useState<string>('normal')
-  // const randomIndex = Math.floor(Math.random() * 5)
+  const [randomIndices, setRandomIndices] = useState<Record<number, number>>({})
+
+  // 使用 useRef 来存储最新的 selectedImg 和 modalOpen 值，避免不必要的渲染
+  const selectedImgRef = useRef<StatusCode | null>(null)
+  const modalOpenRef = useRef<boolean>(false)
+
+  useEffect(() => {
+    selectedImgRef.current = selectedImg
+    modalOpenRef.current = modalOpen
+  }, [selectedImg, modalOpen])
 
   const getCodeImg = (code: StatusCode) => {
-    return Array.isArray(code.image) ? code.image[0] : code.image
+    if (Array.isArray(code.image)) {
+      return code.image[randomIndices[code.code] || 0]
+    }
+    return code.image
   }
 
   const filteredCodes = statusCodes.filter(code => 
@@ -40,23 +53,36 @@ export default function Component() {
     return acc
   }, {})
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!modalOpen) return
-      if (e.key === 'ArrowLeft') navigateModal(-1)
-      if (e.key === 'ArrowRight') navigateModal(1)
-      if (e.key === 'Escape') setModalOpen(false)
-    }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [modalOpen, selectedImg])
-
-  const navigateModal = (direction: number) => {
+  // 将 navigateModal 函数移到组件外部
+  const navigateModal = (direction: number, selectedImg: StatusCode | null,   setSelectedImg: React.Dispatch<React.SetStateAction<StatusCode | null>>) => {
     if (!selectedImg) return
     const currentIndex = statusCodes.findIndex(code => code.code === selectedImg.code)
     const newIndex = (currentIndex + direction + statusCodes.length) % statusCodes.length
     setSelectedImg(statusCodes[newIndex])
   }
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (!modalOpenRef.current) return
+    if (e.key === 'ArrowLeft') navigateModal(-1, selectedImgRef.current, setSelectedImg)
+    if (e.key === 'ArrowRight') navigateModal(1, selectedImgRef.current, setSelectedImg)
+    if (e.key === 'Escape') setModalOpen(false)
+  }, [])
+
+  useEffect(() => {
+    console.log('useEffect')
+    // 如果对应状态码有多个图片，则每次会话期间生成一个随机index，用户刷新页面时随机选择一张图片
+    const indices: Record<number, number> = {}
+    statusCodes.forEach(code => {
+      if (Array.isArray(code.image)) {
+        indices[code.code] = Math.floor(Math.random() * code.image.length)
+      }
+    })
+    setRandomIndices(indices)
+
+    // 监听键盘事件
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleKeyDown])
 
   const toggleDisplayMode = () => {
     setDisplayMode(prev => prev === 'normal' ? 'grouped' : 'normal')
@@ -136,15 +162,15 @@ export default function Component() {
           <div className="relative mb-4">
             <img src={selectedImg ? getCodeImg(selectedImg) : ''} alt={`HTTP ${selectedImg?.code}`} className="w-full aspect-square object-cover rounded" />
             <button
-              onClick={() => navigateModal(-1)}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
+              onClick={() => navigateModal(-1, selectedImgRef.current, setSelectedImg)}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full focus:outline-none"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
             <button
-              onClick={() => navigateModal(1)}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full"
+              onClick={() => navigateModal(1, selectedImgRef.current, setSelectedImg)}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-20 text-white p-2 rounded-full focus:outline-none"
               aria-label="Next image"
             >
               <ChevronRight className="h-6 w-6" />
