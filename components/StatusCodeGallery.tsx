@@ -137,7 +137,7 @@ export default function Component() {
               <TabsTrigger 
                 key={group} 
                 value={group} 
-                className="flex-1 px-4 py-2 rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all"
+                className="flex-1 rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm transition-all"
               >
                 {group}
               </TabsTrigger>
